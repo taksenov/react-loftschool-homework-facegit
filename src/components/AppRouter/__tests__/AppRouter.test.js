@@ -9,40 +9,35 @@ describe('AppRouter >', () => {
         const renderedComponent = shallow(<AppRouter />);
 
         // // Выведем отрендеренный компонент
-        console.log(renderedComponent.debug());
+        // console.log(renderedComponent.debug());
 
-        // Find AppRouter Page
-        expect(renderedComponent.find('div')).toBeTruthy();
         expect(renderedComponent.find('Switch')).toBeTruthy();
     });
+    it('should render AppRouter > PrivateRoute with path="/user/:name"', () => {
+        const renderedComponent = shallow(<AppRouter />);
+
+        expect(
+            renderedComponent.find('Connect(PrivateRoute)').find({
+                path: '/user/:name'
+            })
+        ).toBeTruthy();
+    });
+    it('should render AppRouter > Route with path="/login"', () => {
+        const renderedComponent = shallow(<AppRouter />);
+
+        expect(
+            renderedComponent.find('Route').find({
+                path: '/login'
+            })
+        ).toBeTruthy();
+    });
+    it('should render AppRouter > Redirect to="/user/dex157"', () => {
+        const renderedComponent = shallow(<AppRouter />);
+
+        expect(
+            renderedComponent.find('Redirect').find({
+                to: '/user/dex157'
+            })
+        ).toBeTruthy();
+    });
 });
-
-// console.log src\components\AppRouter\__tests__\AppRouter.test.js:10
-//     <div className="App">
-//       <Switch>
-//         <Route path="/login" exact={true} component="" />
-//         <Connect(PrivateRoute) path="/user/:name" component="" />
-//         <Redirect to="/user/dex157" push={false} />
-//       </Switch>
-//     </div>
-
-// describe('check Comments rendering', () => {
-//     it('render Comment component on create new comment', () => {
-//         const wrapper = shallow(<NewsPost id={1} text={'test'} />);
-//         wrapper.find('input').simulate('change', { target: { value: 10 } });
-//         wrapper.update();
-//         wrapper.find('input').simulate('keyDown', { keyCode: 13 });
-//         wrapper.update();
-//         const commentFromState = wrapper.state().comments[0];
-//         expect(
-//             wrapper.contains(
-//                 <Comment
-//                     key={commentFromState.id}
-//                     id={commentFromState.id}
-//                     text={commentFromState.text}
-//                     onDelete={wrapper.instance().handleDelete}
-//                 />
-//             )
-//         ).toBeTruthy();
-//     });
-// });
