@@ -51,7 +51,7 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
 
-// import Spinner from 'react-svg-spinner';
+//  import Spinner from 'react-svg-spinner';
 // ...
 // if (isFetching) {
 //   return <Spinner size="64px" color="fuchsia" gap={5} />;
