@@ -17,7 +17,7 @@ const isLogout = handleActions(
         [authorize]: () => false,
         [logout]: () => true
     },
-    false
+    true
 );
 
 export default combineReducers({
@@ -29,3 +29,20 @@ export default combineReducers({
 export const getToken = state => state.auth.token;
 export const getIsAuthorized = state => state.auth.isAuthorized;
 export const getIsLogout = state => state.auth.isLogout;
+
+// import { handleActions } from 'redux-actions';
+// import { authorize, logout } from '../actions/auth';
+
+// export default handleActions(
+//     {
+//         [authorize]: () => ({ isAuthorized: true }),
+//         [logout]: () => ({ isAuthorized: false })
+//     },
+//     {
+//         isAuthorized: false
+//     }
+// );
+
+// export const getToken = state => state.auth.token;
+// export const getIsAuthorized = state => state.auth.isAuthorized;
+// export const getIsLogout = state => state.auth.isLogout;
