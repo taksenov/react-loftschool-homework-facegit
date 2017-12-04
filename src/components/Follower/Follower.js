@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class Follower extends Component {
     render() {
-        return null;
+        return <div>Мои подписчики</div>;
     }
 }
 
