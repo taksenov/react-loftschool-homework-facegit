@@ -28,11 +28,9 @@ class AuthPage extends Component {
         const { inputToken } = this.state;
         const { authorize } = this.props;
         if (e.keyCode === 13 && inputToken) {
-            console.log(inputToken);
             authorize(inputToken);
         }
     } //handleKeyDown
-    //fb630bc15d7520e0a5a9354dec3d20d9b347911c
 
     handleLogOut(e) {
         const { logout } = this.props;
