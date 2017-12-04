@@ -6,6 +6,10 @@ export const {
     fetchUserFailure
 } = createActions({
     FETCH_USER_REQUEST: undefined,
-    FETCH_USER_SUCCESS: undefined,
+    FETCH_USER_SUCCESS: ({ data }) => data,
     FETCH_USER_FAILURE: undefined
+});
+
+export const { fetchTokenOwnerRequest } = createActions({
+    FETCH_TOKEN_OWNER_REQUEST: undefined
 });

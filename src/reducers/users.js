@@ -1,13 +1,20 @@
 import {
     fetchUserRequest,
     fetchUserSuccess,
-    fetchUserFailure
+    fetchUserFailure,
+    fetchTokenOwnerRequest
 } from '../actions/users';
 import { combineReducers } from 'redux';
 import { handleAction, handleActions } from 'redux-actions';
 
-const fetchUser = handleActions(
+const userData = handleActions(
     {
+        [fetchTokenOwnerRequest]: state => ({
+            ...state,
+            isFetching: true,
+            data: null,
+            error: null
+        }),
         [fetchUserRequest]: (state, action) => ({
             ...state,
             login: action.payload,
@@ -50,12 +57,12 @@ const isFetched = handleActions(
 
 export default combineReducers({
     error,
-    fetchUser,
+    userData,
     isFetched,
     isFetching
 });
 
-export const getFetchUser = state => state.users.fetchUser;
+export const getUserData = state => state.users.userData;
 export const getIsFetching = state => state.users.isFetching;
 export const getIsFetched = state => state.users.isFetched;
 export const getError = state => state.users.error;
