@@ -13,12 +13,9 @@ export const clearTokenApi = () => {
 };
 
 export const getUserInformation = login => {
-    console.log(login);
-    // instance(`users/${login}`);
-    instance(`users/${login.login}`).then(function(response) {
-        console.log(response);
-    });
+    return instance(`users/${login}`);
 };
+
 export const getUserFollowers = login =>
     instance(`users/${login}/followers?pages=1&per_page=100`);
 export const getUserRepos = login => instance(`users/${login}/repos`);
