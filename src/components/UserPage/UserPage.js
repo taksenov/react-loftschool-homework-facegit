@@ -24,12 +24,13 @@ class UserPage extends Component {
     componentDidMount() {
         const { match, fetchUserRequest, fetchTokenOwnerRequest } = this.props;
         const userName = match.params.name;
-        console.log(fetchUserRequest());
+        // console.log(fetchUserRequest());
 
         if (userName === 'taksenov') {
             fetchTokenOwnerRequest();
         } else {
             fetchUserRequest(userName);
+            // console.log(fetchUserRequest(userName));
         }
     } //componentDidMount
 

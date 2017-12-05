@@ -18,11 +18,13 @@ const userData = handleActions(
         [fetchUserRequest]: (state, action) => ({
             ...state,
             login: action.payload,
-            data: null
+            data: null,
+            error: null
         }),
         [fetchUserSuccess]: (state, action) => ({
             ...state,
-            data: action.payload
+            data: action.payload,
+            error: null
         })
     },
     {
