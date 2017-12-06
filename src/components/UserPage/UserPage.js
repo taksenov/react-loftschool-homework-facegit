@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-svg-spinner';
 
@@ -12,7 +12,8 @@ import { getIsFetching, getUserData } from '../../reducers/users';
 
 import Followers from '../Followers';
 
-class UserPage extends Component {
+export class UserPageCls extends Component {
+    // class UserPageCls extends PureComponent {
     static displayName = 'UserPage';
 
     constructor(props) {
@@ -24,7 +25,6 @@ class UserPage extends Component {
     componentDidMount() {
         const { match, fetchUserRequest, fetchTokenOwnerRequest } = this.props;
         const userName = match.params.name;
-        // console.log(fetchUserRequest());
 
         if (userName === 'taksenov') {
             fetchTokenOwnerRequest();
@@ -43,8 +43,10 @@ class UserPage extends Component {
     renderContent() {
         const { user } = this.props;
 
-        if (user === null) {
-            return <p className="error">Пользователя не существует</p>;
+        if (user === null || user === undefined) {
+            return (
+                <p className="UserPage__error">Пользователя не существует</p>
+            );
         } else {
             return (
                 <div className="UserPage__userData">
@@ -59,6 +61,7 @@ class UserPage extends Component {
 
     render() {
         const { isFetching } = this.props;
+
         return (
             <div className="UserPage">
                 {isFetching ? (
@@ -83,4 +86,7 @@ const mapDispatchToProps = {
     fetchTokenOwnerRequest
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+// export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
+export const UserPage = connect(mapStateToProps, mapDispatchToProps)(
+    UserPageCls
+);

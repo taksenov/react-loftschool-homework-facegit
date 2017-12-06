@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import PrivateRoute from '../PrivateRoute';
 import AuthPage from '../AuthPage';
-import UserPage from '../UserPage';
+import { UserPage } from '../UserPage';
 
 class AppRouter extends Component {
     render() {
