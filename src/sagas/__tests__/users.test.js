@@ -1,6 +1,5 @@
 import { fetchUserSuccess, fetchUserFailure } from '../../actions/users';
 import { call, put } from 'redux-saga/effects';
-// import {fetchUserWatch} from '../users';
 import { fetchUserWatch } from '../users';
 import { getUserInformation } from '../../api';
 

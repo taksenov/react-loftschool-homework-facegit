@@ -33,9 +33,12 @@ const userData = handleActions(
     }
 );
 
-const error = handleAction(
-    fetchUserFailure,
-    (state, action) => action.error,
+const error = handleActions(
+    {
+        [fetchUserFailure]: (state, action) => action.error,
+        [fetchUserRequest]: () => null,
+        [fetchUserSuccess]: () => null
+    },
     null
 );
 
