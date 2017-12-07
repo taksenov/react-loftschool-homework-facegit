@@ -1,73 +1,120 @@
+// import { combineReducers } from 'redux';
+import { handleAction, handleActions } from 'redux-actions';
 import {
     fetchUserRequest,
     fetchUserSuccess,
     fetchUserFailure,
     fetchTokenOwnerRequest
 } from '../actions/users';
-import { combineReducers } from 'redux';
-import { handleAction, handleActions } from 'redux-actions';
 
-const userData = handleActions(
+export default handleActions(
     {
         [fetchTokenOwnerRequest]: state => ({
             ...state,
             isFetching: true,
+            isFetched: true,
             data: null,
             error: null
         }),
-        [fetchUserRequest]: (state, action) => ({
+        [fetchUserRequest]: (state, { payload }) => ({
             ...state,
-            login: action.payload,
+            isFetching: true,
+            isFetched: false,
+            login: payload,
             data: null,
             error: null
         }),
-        [fetchUserSuccess]: (state, action) => ({
+        [fetchUserSuccess]: (state, { payload }) => ({
             ...state,
-            data: action.payload,
+            isFetching: false,
+            isFetched: true,
+            data: payload,
             error: null
+        }),
+        [fetchUserFailure]: (state, { error }) => ({
+            ...state,
+            isFetching: false,
+            isFetched: true,
+            data: null,
+            error: error
         })
     },
     {
+        isFetching: false,
+        isFetched: false,
         login: null,
-        data: null
+        data: null,
+        error: null
     }
 );
 
-const error = handleActions(
-    {
-        [fetchUserFailure]: (state, action) => action.error,
-        [fetchUserRequest]: () => null,
-        [fetchUserSuccess]: () => null
-    },
-    null
-);
+// const userData = handleActions(
+//     {
+//         [fetchTokenOwnerRequest]: state => ({
+//             ...state,
+//             isFetching: true,
+//             data: null,
+//             error: null
+//         }),
+//         [fetchUserRequest]: (state, action) => ({
+//             ...state,
+//             login: action.payload,
+//             data: null,
+//             error: null
+//         }),
+//         [fetchUserSuccess]: (state, action) => ({
+//             ...state,
+//             data: action.payload,
+//             error: null
+//         })
+//     },
+//     {
+//         login: null,
+//         data: null
+//     }
+// );
 
-const isFetching = handleActions(
-    {
-        [fetchUserRequest]: () => true,
-        [fetchUserSuccess]: () => false,
-        [fetchUserFailure]: () => false
-    },
-    false
-);
+// const error = handleActions(
+//     {
+//         [fetchUserFailure]: (state, action) => action.error,
+//         [fetchUserRequest]: () => null,
+//         [fetchUserSuccess]: () => null
+//     },
+//     null
+// );
 
-const isFetched = handleActions(
-    {
-        [fetchUserRequest]: () => false,
-        [fetchUserSuccess]: () => true,
-        [fetchUserFailure]: () => true
-    },
-    false
-);
+// const isFetching = handleActions(
+//     {
+//         [fetchUserRequest]: () => true,
+//         [fetchUserSuccess]: () => false,
+//         [fetchUserFailure]: () => false
+//     },
+//     false
+// );
 
-export default combineReducers({
-    error,
-    userData,
-    isFetched,
-    isFetching
-});
+// const isFetched = handleActions(
+//     {
+//         [fetchUserRequest]: () => false,
+//         [fetchUserSuccess]: () => true,
+//         [fetchUserFailure]: () => true
+//     },
+//     false
+// );
 
-export const getUserData = state => state.users.userData;
+// export default combineReducers({
+//     error,
+//     userData,
+//     isFetched,
+//     isFetching
+// });
+
+// export const getUserData = state => state.users.data
+// export const getUserIsFetching = state => state.users.isFetching
+// export const getUserData = state => state.users.userData;
+// export const getUserData = state => state.users.data;
+export const getUserLogin = state => state.users.login;
+export const getUserData = state => state.users.data;
 export const getIsFetching = state => state.users.isFetching;
-export const getIsFetched = state => state.users.isFetched;
-export const getError = state => state.users.error;
+
+// export const getIsFetched = state => state.users.isFetched;
+// export const getError = state => state.users.error;

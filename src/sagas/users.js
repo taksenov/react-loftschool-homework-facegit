@@ -7,19 +7,24 @@ import {
 } from '../actions/users';
 import {
     getUserData,
-    getIsFetching,
-    getIsFetched,
-    getError
+    getUserLogin
+    // getIsFetching,
+    // getIsFetched,
+    // getError
 } from '../reducers/users';
 import requestFlow from './request';
 import { getUserInformation, getTokenOwner } from '../api';
 
 function* onFetchUserRequest() {
-    const userToken = yield select(getUserData);
+    // const userToken = yield select(getUserData);
+    const userToken = yield select(getUserLogin);
     console.log(userToken);
     try {
-        const user = yield call(getUserInformation, userToken.login);
-        yield put(fetchUserSuccess(user));
+        const user = yield call(getUserInformation, userToken);
+        console.log(user);
+        // yield put(fetchUserSuccess(user));
+        const user2 = yield put(fetchUserSuccess(user));
+        console.log(user2);
     } catch (error) {
         yield put(fetchUserFailure(error));
         console.log(error);

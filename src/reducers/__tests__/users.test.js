@@ -16,11 +16,8 @@ describe('Reducer users:', () => {
             expect(next.isFetched).not.toBeTruthy();
         });
         it('clear data field', () => {
-            const next = users(
-                { userData: { data: 'NOT_NULL' } },
-                fetchUserRequest()
-            );
-            expect(next.userData.data).toBe(null);
+            const next = users({ data: 'NOT_NULL' }, fetchUserRequest());
+            expect(next.data).toBe(null);
         });
         it('clear error field', () => {
             const next = users(
@@ -48,7 +45,7 @@ describe('Reducer users:', () => {
         });
         it('change data field', () => {
             const next = users({}, fetchUserSuccess(testPayload));
-            expect(next.userData.data.login).toBe('TEST_USER_LOGIN');
+            expect(next.data.login).toBe('TEST_USER_LOGIN');
         });
         it('clear error field', () => {
             const next = users(
@@ -58,8 +55,6 @@ describe('Reducer users:', () => {
             expect(next.error).toBe(null);
         });
     }); //fetchUserSuccess
-
-    // наполняют данными error, если приходит экшен fetchUserFailure.
 
     describe('check action fetchUserFailure', () => {
         it('change isFetching', () => {
@@ -71,8 +66,10 @@ describe('Reducer users:', () => {
             expect(next.isFetched).toBeTruthy();
         });
         it('set error field', () => {
-            const next = users({ error: null }, fetchUserFailure());
+            const next = users({ error: 'is error' }, fetchUserFailure());
             console.log(next);
+            // TODO: реализовать
+            // наполняют данными error, если приходит экшен fetchUserFailure.
             // expect(next.error).toBe();
         });
     }); //fetchUserFailure
