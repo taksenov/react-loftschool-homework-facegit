@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://api.github.cofgfm/'
-    // baseURL: 'https://api.github.com/'
+    // baseURL: 'https://api.github.cofgfm/'
+    baseURL: 'https://api.github.com/'
 });
 
 export const setTokenApi = access_token => {

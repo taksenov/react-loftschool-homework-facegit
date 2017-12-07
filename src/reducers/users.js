@@ -31,12 +31,12 @@ export default handleActions(
             data: payload,
             error: null
         }),
-        [fetchUserFailure]: (state, { error }) => ({
+        [fetchUserFailure]: (state, { payload }) => ({
             ...state,
             isFetching: false,
             isFetched: true,
             data: null,
-            error: error
+            error: payload
         })
     },
     {

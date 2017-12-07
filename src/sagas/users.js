@@ -1,4 +1,11 @@
-import { takeLatest, select, call, put, fork } from 'redux-saga/effects';
+import {
+    takeLatest,
+    select,
+    call,
+    put,
+    fork,
+    takeEvery
+} from 'redux-saga/effects';
 import {
     fetchUserRequest,
     fetchUserSuccess,
@@ -18,21 +25,18 @@ import { getUserInformation, getTokenOwner } from '../api';
 function* onFetchUserRequest() {
     // const userToken = yield select(getUserData);
     const userToken = yield select(getUserLogin);
-    console.log(userToken);
     try {
         const user = yield call(getUserInformation, userToken);
-        console.log(user);
-        // yield put(fetchUserSuccess(user));
-        const user2 = yield put(fetchUserSuccess(user));
-        console.log(user2);
+        yield put(fetchUserSuccess(user));
     } catch (error) {
-        yield put(fetchUserFailure(error));
         console.log(error);
+        yield put(fetchUserFailure(error));
     }
 } //onFetchUserRequest
 
 export function* fetchUserWatch() {
-    yield takeLatest(fetchUserRequest, onFetchUserRequest);
+    // yield takeLatest(fetchUserRequest, onFetchUserRequest);
+    yield takeEvery(fetchUserRequest, onFetchUserRequest);
 }
 
 // export function* fetchUserSaga(action) {

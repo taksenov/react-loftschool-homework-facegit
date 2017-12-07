@@ -8,7 +8,6 @@ export const {
     FETCH_USER_REQUEST: undefined,
     FETCH_USER_SUCCESS: ({ data }) => data,
     FETCH_USER_FAILURE: undefined
-    // FETCH_USER_FAILURE: ({ error }) => error
 });
 
 export const { fetchTokenOwnerRequest } = createActions({

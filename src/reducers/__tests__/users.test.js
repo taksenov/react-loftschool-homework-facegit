@@ -66,11 +66,11 @@ describe('Reducer users:', () => {
             expect(next.isFetched).toBeTruthy();
         });
         it('set error field', () => {
-            const next = users({ error: 'is error' }, fetchUserFailure());
-            console.log(next);
-            // TODO: реализовать
-            // наполняют данными error, если приходит экшен fetchUserFailure.
-            // expect(next.error).toBe();
+            const next = users(
+                { error: 'NO_ERROR' },
+                fetchUserFailure('404_ERROR')
+            );
+            expect(next.error).toBe('404_ERROR');
         });
     }); //fetchUserFailure
 });
