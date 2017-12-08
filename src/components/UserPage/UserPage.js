@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-svg-spinner';
 
@@ -10,10 +10,9 @@ import {
 } from '../../actions/users';
 import { getIsFetching, getUserData } from '../../reducers/users';
 
-import Followers from '../Followers';
+import { Followers } from '../Followers';
 
 export class UserPageCls extends Component {
-    // class UserPageCls extends PureComponent {
     static displayName = 'UserPage';
 
     constructor(props) {
@@ -30,7 +29,6 @@ export class UserPageCls extends Component {
             fetchTokenOwnerRequest();
         } else {
             fetchUserRequest(userName);
-            // console.log(fetchUserRequest(userName));
         }
     } //componentDidMount
 
@@ -50,10 +48,27 @@ export class UserPageCls extends Component {
         } else {
             return (
                 <div className="UserPage__userData">
-                    <div className="UserPage__avatar" />
-                    <div className="UserPage__login">{user.login}</div>
-                    <div className="UserPage__followers_count" />
-                    <Followers />
+                    <div className="UserPage__avatar">
+                        <img
+                            src={user.avatar_url}
+                            alt={user.login}
+                            width="100"
+                        />
+                    </div>
+                    <div className="UserPage__login">
+                        Логин пользователя:{' '}
+                        <strong className="UserPage__login--data">
+                            {user.login}
+                        </strong>
+                    </div>
+                    <div className="UserPage__followers_count">
+                        Количество подписчиков:{' '}
+                        <strong className="UserPage__followers_count--data">
+                            {user.followers}
+                        </strong>
+                    </div>
+                    <hr />
+                    <Followers login={user.login} />
                 </div>
             );
         }
@@ -86,7 +101,6 @@ const mapDispatchToProps = {
     fetchTokenOwnerRequest
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
 export const UserPage = connect(mapStateToProps, mapDispatchToProps)(
     UserPageCls
 );

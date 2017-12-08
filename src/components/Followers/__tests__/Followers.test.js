@@ -60,25 +60,12 @@ describe('UserPage >', () => {
                 }
             });
             expect(
-                wrapper.find('.UserPage__login--data').getElement().props
-                    .children
+                wrapper.find('.UserPage__login').getElement().props.children
             ).toEqual('test-user');
         });
-        it('find UserPage__followers_count with followers === 111', () => {
-            wrapper.setProps({
-                user: {
-                    followers: '111'
-                }
-            });
-            expect(
-                wrapper.find('.UserPage__followers_count--data').getElement()
-                    .props.children
-            ).toEqual('111');
-        });
-        it('find <Followers /> with "login" prop', () => {
-            expect(wrapper.find('Followers').getElement().props).toEqual({
-                login: undefined
-            });
-        });
     });
+    //TODO: подготовить, после того как сделаю компоненты Followers
+    // В основной верстке должен быть:
+    // количество фаловеров пользователя,
+    // компонент Followers с передачей login через props.
 });

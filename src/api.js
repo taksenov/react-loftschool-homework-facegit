@@ -14,7 +14,6 @@ export const clearTokenApi = () => {
 };
 
 export const getUserInformation = login => {
-    // console.log(instance(`users/${login}`).then());
     return instance(`users/${login}`);
 };
 
